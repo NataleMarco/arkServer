@@ -1,0 +1,22 @@
+version: '3'
+services:
+  ark:
+    image: hermsi/ark-server:latest
+    container_name: ark_server
+    restart: always
+    volumes:
+      - ./ark-data:/app
+      - ./ark-backups:/home/steam/ARK-Backups
+    ports:
+      - "7777:7777/udp"
+      - "7778:7778/udp"
+      - "27015:27015/udp"
+      - "27020:27020/tcp"
+    environment:
+      SESSION_NAME: "MiServidorARK"
+      SERVER_MAP: TheIsland
+      SERVER_PASSWORD: ""           # Dejar vacío para Epic cross-play :contentReference[oaicite:4]{index=4}
+      ADMIN_PASSWORD: "TuAdminPass"
+      MAX_PLAYERS: 10
+      ENABLE_CROSSPLAY: "true"      # Imagen permite esta variable :contentReference[oaicite:5]{index=5}
+      DISABLE_BATTLEYE: "true"      # Recomendado con crossplay :contentReference[oaicite:6]{index=6}
